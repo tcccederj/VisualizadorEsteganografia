@@ -1,0 +1,8 @@
+<section>
+  <label for="selecionar-imagem">Selecione a IMG</label>
+  <input type="file" id="selecionar-imagem" (change)="exibirImagemSelecionada($event)">
+  <!-- Div onde a imagem será exibida -->
+  <div id="imagem-div" *ngIf="imagemSelecionada">
+    <img class="imagem-div" [src]="imagemSelecionada" alt="Imagem selecionada" style="max-width: 800px; max-height: 600px;">
+  </div>
+</section>
