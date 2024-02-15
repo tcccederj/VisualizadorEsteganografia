@@ -5,4 +5,11 @@
   <div id="imagem-div" *ngIf="imagemSelecionada">
     <img class="imagem-div" [src]="imagemSelecionada" alt="Imagem selecionada" style="max-width: 800px; max-height: 600px;">
   </div>
+  <div *ngIf="statusMolder">
+    <h2>Status: {{ statusMolder.status ? 'Esteganografia Detectada' : 'Nenhuma Esteganografia Detectada' }}</h2>
+    <p>Mensagem: {{ statusMolder.msg }}</p>
+    <p>Código: {{ statusMolder.codigo }}</p>
+  </div>
+
+
 </section>
