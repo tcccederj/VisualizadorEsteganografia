@@ -1,27 +1,20 @@
-# VisualizadorEstenografia
+# Bem vindo ao visualizador de imagens com segurança contra spywares!
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge) 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.11.
+Este é um visualizador de imagens com checagem de esteganografia, sua principal funcionalidade é validar se a imagem é segura para abri-la em seu sistema operacional, validando se a mesma possui algum tipo de spyware.
+# Como usar?
+**Development server Angular**
 
-## Development server
+  Insegir o comando  `ng serve` para um dev server.  
+  Abrir seu navegador e digitar o endereço `http://localhost:4200/`.
+  
+**Development server Electron**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  Insegir o comando  `npm start` para um dev server Electron. 
+  Abrirá uma nova janela Electron.
+# Limitações
+Por se tratar de um projeto de TCC este visualizador terá inicialmente uma programação para verificar a existência de esteganografia na imagem, devido ao tempo necessario para entregar o TCC. 
+# Tecnologias utilizadas no projeto
+  **Angular**
+  
+  **Electron**
