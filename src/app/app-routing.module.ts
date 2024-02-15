@@ -5,7 +5,7 @@ import { HomeEstenografiaComponent } from './features/criacaoEstenografia/homeEs
 
 const routes: Routes = [
   { path: 'homeValidacaoEstenografia', component: HomePageComponent },
-  { path: 'criacaoEstenografia', component: HomeEstenografiaComponent },
+  { path: '',pathMatch:'full', component: HomeEstenografiaComponent },
 ];
 
 @NgModule({

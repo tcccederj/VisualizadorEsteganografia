@@ -1,13 +1,12 @@
-<h1>Esconder Arquivo BAT</h1>
-<label for="batFile">Selecione um arquivo BAT:</label>
-<input type="file" id="batFile" accept=".bat" (change)="onBatFileChange($event)" required>
-<br>
-<label for="imageFile">Selecione uma imagem:</label>
-<input type="file" id="imageFile" accept="image/png, image/jpeg" (change)="onImageFileChange($event)" required>
-<br>
-<br>
-<button (click)="onSubmit()">Esconder</button>
+<form (submit)="gerarImagem($event)">
+  <label for="imagem">Selecione a imagem:</label><br>
+  <input id="imagem" type="file" accept="image/*" (change)="selecionarImagem($event)" required><br>
+  
+  <label for="executavel">Selecione o arquivo executável:</label><br>
+  <input id="executavel" type="file" accept=".exe" (change)="selecionarExecutavel($event)" required><br>
+  <br>
+  <button type="submit">Gerar Imagem Esteganográfica</button>
+</form>
 
-<div *ngIf="imageUrl">
-  <button (click)="downloadImage()">Baixar Imagem com BAT</button>
-</div>
+<!-- Botão de download -->
+<button *ngIf="novaImagem" (click)="downloadNovaImagem()" type="button">Baixar Nova Imagem Esteganográfica</button>

@@ -7,49 +7,47 @@ import { EsteganografiaService } from '../Services/esteganografia.service';
   styleUrls: ['./homeEstenografia.component.scss']
 })
 export class HomeEstenografiaComponent implements OnInit {
-  batFile: File | undefined;
-  imageFile: File | undefined;
-  imageUrl: string | undefined;
+  imagemSelecionada: File | null = null;
+  executavelSelecionado: File | null = null;
+  novaImagem: Blob | null = null;
 
   constructor(private esteganografiaService: EsteganografiaService) { }
 
   ngOnInit() {
   }
 
-  onBatFileChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.batFile = input.files[0];
-    }
+  selecionarImagem(event: any) {
+    this.imagemSelecionada = event.target.files[0];
   }
 
-  onImageFileChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.imageFile = input.files[0];
-    }
+  selecionarExecutavel(event: any) {
+    this.executavelSelecionado = event.target.files[0];
   }
+  
+  gerarImagem(event: Event) {
+    event.preventDefault(); // Evita o recarregamento da página
 
-  onSubmit() {
-    if (this.batFile && this.imageFile) {
-      this.esteganografiaService.encodeBatImage(this.imageFile, this.batFile)
-        .then(blob => {
-          this.imageUrl = window.URL.createObjectURL(blob);
+    if (this.imagemSelecionada && this.executavelSelecionado) {
+      this.esteganografiaService.esconderExecutável(this.imagemSelecionada, this.executavelSelecionado)
+        .then((novaImagem) => {
+          this.novaImagem = novaImagem;
         })
-        .catch(error => console.error("Erro ao esconder BAT na imagem:", error));
-    } else {
-      console.error("Selecione um arquivo BAT e uma imagem.");
+        .catch((err) => {
+          console.error(err);
+        });
     }
   }
 
-  downloadImage() {
-    if (this.imageUrl) {
+  downloadNovaImagem() {
+    if (this.novaImagem) {
+      const url = window.URL.createObjectURL(this.novaImagem);
       const a = document.createElement('a');
-      a.href = this.imageUrl;
-      a.download = 'imagem_com_bat.png';
+      a.href = url;
+      a.download = 'nova-imagem.png';
       document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(this.imageUrl);
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
     } else {
       console.error("Nenhuma imagem gerada para download.");
     }

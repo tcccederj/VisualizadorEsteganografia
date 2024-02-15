@@ -4,91 +4,44 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EsteganografiaService {
-
   constructor() { }
 
-  // Função para esconder um arquivo BAT em uma imagem
-  encodeBatImage(imageFile: File, batFile: File): Promise<Blob> {
-    return new Promise<Blob>((resolve, reject) => {
-      const readerImage = new FileReader();
-      const readerBat = new FileReader();
-
-      readerImage.onload = () => {
-        readerBat.onload = () => {
-          const image = new Image();
-          image.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = image.width;
-            canvas.height = image.height;
-            const ctx = canvas.getContext('2d');
-            ctx!.drawImage(image, 0, 0);
-            const imageData = ctx!.getImageData(0, 0, canvas.width, canvas.height);
-            const pixels = imageData.data;
-            let bitIndex = 0;
-            const batBytes = new Uint8Array(readerBat.result as ArrayBuffer);
-            for (const batByte of batBytes) {
-              const bits = this.byteToBits(batByte);
-              for (const bit of bits) {
-                pixels[bitIndex] = (pixels[bitIndex] & ~1) | bit;
-                bitIndex += 4;
-              }
-            }
-            ctx!.putImageData(imageData, 0, 0);
-            canvas.toBlob((blob) => {
-              resolve(blob!);
-            }, 'image/png');
-          };
-          image.src = readerImage.result as string;
+  esconderExecutável(imagem: File, executavel: File): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const readerImagem = new FileReader();
+      readerImagem.onload = () => {
+        const imagemBuffer = new Uint8Array(readerImagem.result as ArrayBuffer);
+        
+        const readerExecutavel = new FileReader();
+        readerExecutavel.onload = () => {
+          const executavelBuffer = new Uint8Array(readerExecutavel.result as ArrayBuffer);
+          
+          const novaImagemBuffer = this.esconderLSB(imagemBuffer, executavelBuffer);
+          const novaImagemBlob = new Blob([novaImagemBuffer], { type: imagem.type });
+          
+          resolve(novaImagemBlob);
         };
-        readerBat.readAsArrayBuffer(batFile);
+        readerExecutavel.onerror = (error) => reject(error);
+        readerExecutavel.readAsArrayBuffer(executavel);
       };
-
-      readerImage.readAsDataURL(imageFile);
+      readerImagem.onerror = (error) => reject(error);
+      readerImagem.readAsArrayBuffer(imagem);
     });
   }
 
-  // Função para extrair um arquivo BAT de uma imagem
-  decodeBatImage(imageFile: File): Promise<Uint8Array> {
-    return new Promise<Uint8Array>((resolve, reject) => {
-      const readerImage = new FileReader();
-      readerImage.onload = () => {
-        const image = new Image();
-        image.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = image.width;
-          canvas.height = image.height;
-          const ctx = canvas.getContext('2d');
-          ctx!.drawImage(image, 0, 0);
-          const imageData = ctx!.getImageData(0, 0, canvas.width, canvas.height);
-          const pixels = imageData.data;
-          let bitIndex = 0;
-          const batBytes: number[] = [];
-          while (bitIndex < pixels.length) {
-            const bits = [pixels[bitIndex++] & 1];
-            for (let i = 1; i < 8; i++) {
-              bits.push(pixels[bitIndex++] & 1);
-            }
-            const batByte = this.bitsToByte(bits);
-            batBytes.push(batByte);
-          }
-          resolve(new Uint8Array(batBytes));
-        };
-        image.src = readerImage.result as string;
-      };
+  esconderLSB(imagemBuffer: Uint8Array, executavelBuffer: Uint8Array): Uint8Array {
+    // Converte o executável para um array de bytes
+    const bytesExecutavel = Array.from(executavelBuffer);
+  
+    // Percorre os bytes da imagem
+    for (let i = 0; i < imagemBuffer.length; i += 4) {
+      // Modifica os bits menos significativos do byte para armazenar um byte do executável
+      imagemBuffer[i] &= 0b11111110;
+      imagemBuffer[i] |= bytesExecutavel[i / 4] & 0b1;
+  
+      // Outras manipulações de bytes LSB aqui...
+    }
 
-      readerImage.readAsDataURL(imageFile);
-    });
-  }
-
-  // Função auxiliar para converter um byte em um array de bits
-  private byteToBits(byte: number): number[] {
-    const binaryString = byte.toString(2);
-    return binaryString.padStart(8, '0').split('').map(Number);
-  }
-
-  // Função auxiliar para converter um array de bits em um byte
-  private bitsToByte(bits: number[]): number {
-    const binaryString = bits.join('');
-    return parseInt(binaryString, 2);
+    return imagemBuffer;
   }
 }
