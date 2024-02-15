@@ -1,7 +1,7 @@
-# Bem vindo ao visualizador de imagens com segurança contra estenografia !
+# Bem vindo ao visualizador de imagens com segurança contra spywares!
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge) 
 
-Este é um visualizador de imagens com checagem de estenografia, sua principal funcionalidade é validar se a imagem é segura para abri em seu sistema operacional, validando se a mesma possue algum tipo de spyware.
+Este é um visualizador de imagens com checagem de esteganografia, sua principal funcionalidade é validar se a imagem é segura para abri-la em seu sistema operacional, validando se a mesma possui algum tipo de spyware.
 # Como usar?
 **Development server Angular**
 
@@ -13,7 +13,7 @@ Este é um visualizador de imagens com checagem de estenografia, sua principal f
   Insegir o comando  `npm start` para um dev server Electron. 
   Abrirá uma nova janela Electron.
 # Limitações
-Por se tratar de um projeto de TCC este visualizador terá inicialmente uma programação para localizar um tipo especifico de estenografia, devido ao tempo necessario para entregar o TCC. 
+Por se tratar de um projeto de TCC este visualizador terá inicialmente uma programação para verificar a existência de esteganografia na imagem, devido ao tempo necessario para entregar o TCC. 
 # Tecnologias utilizadas no projeto
   **Angular**
   
