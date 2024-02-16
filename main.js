@@ -22,7 +22,7 @@ function createWindow() {
     })
   );
 
-  win.webContents.openDevTools(); // Abre o console de desenvolvedor do Electron
+  //win.webContents.openDevTools(); // Abre o console de desenvolvedor do Electron
 
   win.on('closed', () => {
     win = null;

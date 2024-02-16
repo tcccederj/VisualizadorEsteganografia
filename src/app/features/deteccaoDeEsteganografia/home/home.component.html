@@ -1,0 +1,18 @@
+<button (click)="returnToHomePage()">Home</button>
+<br>
+<br>
+<div>
+  <input type="file" accept="image/*" (change)="exibirImagemSelecionada($event)">
+</div>
+
+<div *ngIf="imagemSelecionadaUrl">
+  <img class="imagem-selecionada" [src]="imagemSelecionadaUrl" alt="Imagem Selecionada">
+  <br>
+  <button (click)="detectarEstenografia()">Detectar Imagem Selecionada</button>
+</div>
+
+<div *ngIf="statusMolder">
+  <h3>Status da Detecção de Esteganografia:</h3>
+  <p>Status: {{ statusMolder.status }}</p>
+  <p>Mensagem: {{ statusMolder.msg }}</p>
+</div>

@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeModuleModule } from './features/home/home-module.module';
-import { EstenografiaModuModule } from './features/criacaoEstenografia/estenografia-modu.module';
 import { HttpClientModule } from '@angular/common/http';
+
+import { HomePageComponent } from './features/homePage/homePage.component';
+import { DeteccaoEstenografiaModelModule } from './features/deteccaoDeEsteganografia/deteccao-esteganografia-model.module';
+import { EstenografiaModuModule } from './features/criacaoEsteganografia/esteganografia-modu.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModuleModule,
     HttpClientModule,
+    DeteccaoEstenografiaModelModule,
     EstenografiaModuModule
   ],
   providers: [],

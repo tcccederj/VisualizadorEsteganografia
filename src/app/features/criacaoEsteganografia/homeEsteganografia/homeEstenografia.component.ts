@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EsteganografiaService } from '../Services/esteganografia.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homeEstenografia',
@@ -11,9 +12,13 @@ export class HomeEstenografiaComponent implements OnInit {
   executavelSelecionado: File | null = null;
   novaImagem: Blob | null = null;
 
-  constructor(private esteganografiaService: EsteganografiaService) { }
+  constructor(private router: Router,private esteganografiaService: EsteganografiaService) { }
 
   ngOnInit() {
+  }
+
+  returnToHomePage() {
+    this.router.navigate(['/']);
   }
 
   selecionarImagem(event: any) {
@@ -23,7 +28,7 @@ export class HomeEstenografiaComponent implements OnInit {
   selecionarExecutavel(event: any) {
     this.executavelSelecionado = event.target.files[0];
   }
-  
+
   gerarImagem(event: Event) {
     event.preventDefault(); // Evita o recarregamento da página
 
