@@ -1,0 +1,69 @@
+  /* Estilos para a imagem */
+  .imagem-selecionada {
+    max-width: 300px; /* Limita a largura máxima da imagem a 300px */
+    max-height: 400px; /* Limita a altura máxima da imagem a 400px */
+  }
+
+  /* Classes para cor do texto */
+  .vermelho {
+    color: red;
+  }
+
+  .verde {
+    color: green;
+  }
+
+  /* Estilos para o botão */
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* Estilos para o contêiner do botão Detectar Imagem Selecionada */
+  .detectar-button-container {
+    margin-top: 20px;
+  }
+
+  /* Estilos para o status da detecção de esteganografia */
+  .status-container {
+    margin-top: 20px;
+  }
+
+  .status-container h3 {
+    font-size: 18px;
+    color: #333;
+  }
+
+  .status-container p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+
+  /* Estilos para tornar a página mais responsiva */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  @media only screen and (min-width: 600px) {
+    .container {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container > div {
+      margin: 0 20px;
+    }
+  }

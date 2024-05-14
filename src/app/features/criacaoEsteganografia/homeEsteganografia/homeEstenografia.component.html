@@ -1,16 +1,16 @@
-<button (click)="returnToHomePage()">Home</button>
-<br>
-<br>
-
-<form (submit)="gerarImagem($event)">
-  <label for="imagem">Selecione a imagem:</label><br>
-  <input id="imagem" type="file" accept="image/*" (change)="selecionarImagem($event)" required><br>
-
-  <label for="executavel">Selecione o arquivo executável:</label><br>
-  <input id="executavel" type="file" accept=".exe" (change)="selecionarExecutavel($event)" required><br>
+  <button (click)="returnToHomePage()">Home</button>
   <br>
-  <button type="submit">Gerar Imagem Esteganográfica</button>
-</form>
+  <br>
 
-<!-- Botão de download -->
-<button *ngIf="novaImagem" (click)="downloadNovaImagem()" type="button">Baixar Nova Imagem Esteganográfica</button>
+  <form (submit)="gerarImagem($event)">
+    <label for="imagem">Selecione a imagem:</label><br>
+    <input id="imagem" type="file" accept="image/*" (change)="selecionarImagem($event)" required><br>
+
+    <label for="executavel">Selecione o arquivo executável:</label><br>
+    <input id="executavel" type="file" accept=".exe" (change)="selecionarExecutavel($event)" required><br>
+    <br>
+    <button type="submit">Gerar Imagem Esteganográfica</button>
+  </form>
+
+  <!-- Botão de download -->
+  <button *ngIf="novaImagem" (click)="downloadNovaImagem()" type="button">Baixar Nova Imagem Esteganográfica</button>

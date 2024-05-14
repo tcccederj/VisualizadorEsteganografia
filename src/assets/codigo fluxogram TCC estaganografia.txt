@@ -1,0 +1,31 @@
+digraph fluxo_visualizador {
+    node [shape=box];
+
+    subgraph cluster_inicio {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        Abrir_Visualizador -> Selecionar_Imagem -> Enviar_Diretorio -> Esteganografia_Detectada;
+        label = "Início";
+    }
+
+    subgraph cluster_final {
+        node [style=filled];
+        Informar_Esteganografia -> Perguntar_Excluir [dir=back];
+        Perguntar_Excluir -> Excluir_Arquivo [label="Sim"];
+        Perguntar_Excluir -> Informar_Nenhuma_Esteganografia [label="Não"];
+        Excluir_Arquivo -> Finalizar;
+        Informar_Nenhuma_Esteganografia -> Finalizar;
+        label = "Fim";
+    }
+
+    start -> Abrir_Visualizador;
+    Esteganografia_Detectada -> Informar_Esteganografia [label="Sim"];
+    Esteganografia_Detectada -> Perguntar_Excluir [label="Não"];
+    Informar_Nenhuma_Esteganografia -> Finalizar;
+    Finalizar -> end;
+
+    start [shape=Mdiamond, label="Iniciar"];
+    end [shape=Msquare, label="Encerrar"];
+    rankdir=LR;
+}
