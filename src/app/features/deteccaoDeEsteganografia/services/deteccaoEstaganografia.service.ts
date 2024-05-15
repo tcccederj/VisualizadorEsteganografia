@@ -11,9 +11,9 @@ export class DeteccaoEstaganografiaService {
     const imagemBuffer = await this.blobParaArrayBuffer(imagem);
     const executavelBuffer = this.extrairExecutavel(imagemBuffer);
     if (executavelBuffer) {
-      return { status: true, msg: 'Estenografia detectado na imagem.' };
+      return { status: true, msg: 'Esteganografia detectada na imagem.' };
     } else {
-      return { status: false, msg: 'Nenhum Estenografia detectado na imagem.' };
+      return { status: false, msg: 'Nenhuma Esteganografia detectada na imagem.' };
     }
   }
 
