@@ -18,3 +18,10 @@ Por se tratar de um projeto de TCC este visualizador terá inicialmente uma prog
   **Angular**
   
   **Electron**
+
+  
+  # Como inicializar o visualizador
+  Será necessario ter o NodeJS instalado em seu computador, após a instalação do NodeJS, execute os seguintes comandos dentro do diretorio raiz da aplicação.
+  **NPM INSTALL**
+  
+  **NPM RUN START-ELECTRON**
