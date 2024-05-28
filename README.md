@@ -10,11 +10,16 @@ Este é um visualizador de imagens com checagem de esteganografia, sua principal
   
 **Development server Electron**
 
-  Inserir o comando  `npm start` para um dev server Electron. 
+  Inserir o comando  `NPM RUN START-ELECTRON*` para um dev server Electron. 
   Abrirá uma nova janela Electron.
+  
 # Limitações
 Por se tratar de um projeto de TCC este visualizador terá inicialmente uma programação para verificar a existência de esteganografia na imagem, devido ao tempo necessario para entregar o TCC. 
+
 # Tecnologias utilizadas no projeto
+
+ **NodeJS**
+ 
   **Angular**
   
   **Electron**
