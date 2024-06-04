@@ -10,7 +10,7 @@ Este é um visualizador de imagens com checagem de esteganografia, sua principal
   
 **Development server Electron**
 
-  Inserir o comando  `NPM RUN START-ELECTRON*` para um dev server Electron. 
+  Inserir o comando  `npm run start-electron` para um dev server Electron. 
   Abrirá uma nova janela Electron.
   
 # Limitações
@@ -18,17 +18,20 @@ Por se tratar de um projeto de TCC este visualizador terá inicialmente uma prog
 
 # Tecnologias utilizadas no projeto
 
- **NodeJS**
+  **NodeJS**
  
   **Angular**
   
   **Electron**
 
-  
+  **TypeScript**
+
+  **JavaScript**
+
   # Como inicializar o visualizador
   Será necessario ter o NodeJS instalado em seu computador, após a instalação do NodeJS, execute os seguintes comandos dentro do diretorio raiz da aplicação.
 
   
-  **NPM INSTALL**
+  **npm install**
   
-  **NPM RUN START-ELECTRON**
+  **npm run start-electron**
